@@ -24,13 +24,19 @@ def caesar_cipher(text, key1, key2, mode):
     return result
 def main():
     while True:
-        word = input("Inscrie cuvantul: ")
         while True:
-            mode_choice = input("Alege 'encrypt' sau 'decrypt': ").lower()
-            if mode_choice in ["encrypt", "decrypt"]:
+            word = input("Inscrie cuvantul (doar litere): ")
+            if word.isalpha():
                 break
             else:
-                print("Alege 'encrypt' sau 'decrypt'.")
+                print("Cuvantul trebuie sa contina doar litere, fara cifre sau simboluri.")
+        while True:
+            mode_choice = input("Alege 'e' pentru encrypt sau 'd' pentru decrypt: ").lower()
+            if mode_choice in ["e", "d"]:
+                mode_choice = "encrypt" if mode_choice == "e" else "decrypt"
+                break
+            else:
+                print("Scrie doar 'e' pentru encrypt sau 'd' pentru decrypt.")
         while True:
             try:
                 key1 = int(input("Introdu o cheie numerica intre (1-25): "))
@@ -52,8 +58,8 @@ def main():
         else:
             decrypted_word = caesar_cipher(word, key1, key2, "decrypt")
             print(f"Cuvantul decriptat: {decrypted_word}")
-        another_round = input("Alta operatie? (yes/no): ").lower()
-        if another_round != "yes":
+        another_round = input("Alta operatie? (da/nu): ").lower()
+        if another_round != "da":
             break
 if __name__ == "__main__":
     main()
